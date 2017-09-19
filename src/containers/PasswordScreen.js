@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Password from '../components/Auth/Password';
 
 class PasswordScreen extends Component {
     render() {
         return (
-            <View>
-                <Text>PasswordScreen</Text>
-            </View>
+            <Password {...this.props} />
         );
     }
 }
