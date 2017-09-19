@@ -1,23 +1,77 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import {
+  DrugScreen,
+  InfoScreen,
+  LoginScreen,
+  PasswordScreen,
+  RecordScreen,
+  RingerScreen,
+  SplashScreen,
+} from './src/containers';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const TabNav = TabNavigator(
+  {
+    Ringer: {
+      screen: RingerScreen,
+      path: '',
+    },
+    Drug: {
+      screen: DrugScreen,
+      path: 'drug',
+    },
+    Record: {
+      screen: RecordScreen,
+      path: 'record',
+    },
+    Info: {
+      screen: InfoScreen,
+      path: 'info',
+    },
   },
-});
+  {
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
+      labelStyle: {
+        fontSize: 14
+      },
+      showIcon: false,
+      animationEnabled: true
+    },
+  }
+)
+
+const App = StackNavigator(
+  {
+    Splash: {
+      screen: SplashScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Password: {
+      screen: PasswordScreen,
+      navigationOptions: {
+        header: null,
+      }
+    },
+    TabsNavigator: {
+      screen: TabNav,
+      navigationOptions: {
+        header: null
+      }
+    }
+  },
+  {
+    headerMode: 'float',
+  }
+);
+
+export default App;
