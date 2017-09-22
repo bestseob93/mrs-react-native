@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import Username from '../components/Auth/Username';
 
 class LoginScreen extends Component {
     static navigationOptions = {
@@ -8,9 +9,7 @@ class LoginScreen extends Component {
     
     render() {
         return (
-            <View>
-                <Text>LoginScreen</Text>
-            </View>
+                <Username {...this.props} />
         );
     }
 }

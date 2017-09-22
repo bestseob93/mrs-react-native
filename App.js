@@ -64,9 +64,6 @@ const App = StackNavigator(
     },
     TabsNavigator: {
       screen: TabNav,
-      navigationOptions: {
-        header: null
-      }
     }
   },
   {
