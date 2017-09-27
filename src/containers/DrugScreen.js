@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, View, Text, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 
 class DrugScreen extends Component {
     static navigationOptions = {
@@ -10,9 +10,9 @@ class DrugScreen extends Component {
         console.log(drugDetail);
         return drugDetail.map((data, index) => {
             return (
-                <View key={index}>
-                    <Text>이미지 들어갈 자리</Text>
-                    <Text>{data.drugName}</Text>
+                <View key={index} style={styles.drugDetailStyle}>
+                    <Image source={require('../imgs/A11A4380A004901.jpg')} style={styles.drugImageStyle} />
+                    <Text style={styles.drugDescription}>{data.drugName}</Text>
                 </View>
             );
         });
@@ -20,59 +20,91 @@ class DrugScreen extends Component {
 
     renderDrugList = ({item}) => {
         return (
-            <ScrollView horizontal style={styles.back}>
-                <Text>{item.key}</Text>
-                {this.renderDrugDetail(item.drugs)}
-            </ScrollView>
+            <View style={styles.listContainer}>
+                <Text style={styles.drugDateStyle}>{item.key}</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {this.renderDrugDetail(item.drugs)}
+                </ScrollView>
+            </View>
         );
     }
 
     render() {
         const patientDrug = [
             {
-                key: 'today',
+                key: 'Today',
                 drugs: [
                     {
-                        drugName: 'hihi'
+                        drugName: 'hihi',
+                        drugImage: ''
                     },
                     {
-                        drugName: 'hihi2'
+                        drugName: 'hihi2',
+                        drugImage: ''
                     }]
             },
             {
-                key: 'yesterday',
+                key: 'Yesterday',
                 drugs: [
                     {
-                        drugName: 'byebye'
+                        drugName: 'byebye',
+                        drugImage: ''
                     },
                     {
-                        drugName: 'byebye2'
+                        drugName: 'byebye2',
+                        drugImage: ''
                     }]
             },
         ]
 
         const { renderDrugList } = this;
         return (
-            <View>
-                <Text>hi</Text>
+            <View style={styles.mainContainer}>
+                <FlatList
+                    data={patientDrug}
+                    renderItem={renderDrugList}
+                />
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-     flex: 1,
-     paddingTop: 22
+    mainContainer: {
+        backgroundColor: 'white',
+        flex: 1
     },
-    item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
-    back: {
-        backgroundColor: 'teal',
-    }
-  })
+        listContainer: {
+            
+        },
+            drugDateStyle: {
+                padding: 10,
+                paddingBottom: 0,
+                marginLeft: 5,
+                fontSize: 30,
+                fontWeight: 'bold'
+            },
+            drugDetailStyle: {
+                // borderColor: 'grey',
+                // borderWidth: 0.1,
+                borderRadius: 10,
+                shadowOffset: {
+                    width: 0,
+                    height: 0
+                },
+                shadowColor: 'grey',
+                shadowOpacity: 0.3,
+                padding: 10,
+                margin: 10,
+                marginBottom: 20
+            },
+                drugImageStyle: {
+                    width: 250,
+                    height: 140
+                },
+                drugDescription: {
+                    textAlign: 'center'
+                }
+})
 
 export default DrugScreen;
