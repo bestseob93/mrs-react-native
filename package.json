@@ -19,9 +19,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^20.0.0",
+    "axios": "^0.16.2",
+    "expo": "21.0.2",
+    "moment": "^2.18.1",
     "react": "16.0.0-alpha.12",
-    "react-native": "^0.47.0",
+    "react-native": "0.48.4",
+    "react-native-vector-icons": "^4.4.0",
+    "react-native-video": "^2.0.0",
+    "react-native-video-player": "^0.8.3",
     "react-navigation": "^1.0.0-beta.11"
   }
 }

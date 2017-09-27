@@ -12,8 +12,12 @@ export default StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'column',
     },
+    errMessage: {
+        paddingTop: 10,
+        color: '#ff8832'
+    },
     textWrapper: {
-        marginTop: 15,
+        marginTop: 5,
         paddingHorizontal: 50,
         justifyContent: 'space-around',
         flexDirection: 'row',

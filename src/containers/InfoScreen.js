@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dimensions from 'Dimensions';
 import { FlatList, StyleSheet, View, Text, Image, ScrollView, AsyncStorage, Button } from 'react-native';
-
 class InfoScreen extends Component {
     static navigationOptions = {
         headerTitle: '한성병원'

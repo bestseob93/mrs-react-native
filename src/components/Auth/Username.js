@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import AnimatedInput from '../AnimatedInput';
-import styles from './style';
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
+import { NavigationActions } from 'react-navigation'
+import axios from 'axios'
+
+import AnimatedInput from '../AnimatedInput'
+import Spinner from '../Spinner'
+import styles from './style'
 
 const resetAction = (routeName, username) => NavigationActions.reset({
     index: 0,
@@ -15,16 +18,36 @@ class Username extends Component {
     constructor(props) {
         super(props);
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            loading: false,
+            isValid: false,
+            errMessage: ''
+        };
     }
 
-    handleSubmit(ev) {
+    handleSubmit = (ev) => {
         
+        const patientName = ev.nativeEvent.text;
         // TODO: 다음 화면 넘어가기
-        console.log('submit pressed');
-        console.log(ev.nativeEvent.text);
-        console.log(this.props);
-        this.props.navigation.dispatch(resetAction('Password', ev.nativeEvent.text));
+        this.setState({
+            loading: true
+        });
+
+        axios.post("http://13.125.12.85:3000/api/v1/patient/chkPatientName", {
+            patientName
+        }).then((res) => {
+            this.setState({
+                isValid: true,
+                loading: false
+            });
+            this.props.navigation.dispatch(resetAction('Password', patientName));
+        }).catch((err) => {
+            console.log(err.response);
+            this.setState({
+                loading: false,
+                errMessage: err.response.data.message
+            });
+        });
     }
     render() {
         const {
@@ -33,12 +56,16 @@ class Username extends Component {
         return (
             <View style={styles.container}>
             <View style={styles.inputWrapper}>
-                <AnimatedInput
-                    placeholder="환자분 성함을 입력해주세요"
-                    autoFocus={true}
-                    returnKeyType="done"
-                    onSubmitEditing={handleSubmit}
-                />
+                {
+                    this.state.loading ? <Spinner /> : 
+                    <AnimatedInput
+                        placeholder="환자분 성함을 입력해주세요"
+                        autoFocus={true}
+                        returnKeyType="done"
+                        onSubmitEditing={handleSubmit}
+                    />
+                }
+                <Text style={styles.errMessage}>{this.state.errMessage}</Text>
             </View>
             <View style={styles.textWrapper}>
                 <Text style={styles.textStyle}>
