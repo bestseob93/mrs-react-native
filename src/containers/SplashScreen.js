@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 const resetAction = (routeName) => NavigationActions.reset({
@@ -10,27 +10,37 @@ const resetAction = (routeName) => NavigationActions.reset({
 });
 
 class SplashScreen extends Component {
-    componentDidMount() {
-        //  appInit();
-        // 로그인 되있으면 탭 네비게이터
-        // 아니면 로그인 화면으로
+    async componentDidMount() {
+        const { _navigateTo } = this;
+        // TODO: 화면 네비게이터
+        try {
+            let token = await AsyncStorage.getItem('myToken');
             let isAppReady = true;
-            let isLoggedIn = false;
             if (isAppReady) {
-                if (isLoggedIn) {
-                    this._navigateTo('TabsNavigator')
+                if (token) {
+                    _navigateTo('TabsNavigator')
                 } else {
-                    this._navigateTo('Login')
+                    _navigateTo('Login')
                 }
             }
+        } catch (e) {
+            if(e) throw e;
         }
-        _navigateTo = (routeName) => {
-            const actionToDispatch = NavigationActions.reset({
-              index: 0,
-              actions: [NavigationActions.navigate({ routeName })]
-            })
-            this.props.navigation.dispatch(actionToDispatch)
-        }
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        console.log('------');
+        console.log(this.props);
+        console.log(nextProps);
+    }
+
+    _navigateTo = (routeName) => {
+        const actionToDispatch = NavigationActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName })]
+        })
+        this.props.navigation.dispatch(actionToDispatch)
+    }
 
     render() {
         return (

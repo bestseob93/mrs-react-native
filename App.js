@@ -1,21 +1,44 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import {
+  CostModalScreen,
   DrugScreen,
   InfoScreen,
   LoginScreen,
   PasswordScreen,
   RecordScreen,
-  RingerScreen,
+  HomeScreen,
   SplashScreen,
 } from './src/containers';
 
+const HomeStack = StackNavigator({
+  Home: {
+    screen: HomeScreen,
+    path: 'home',
+    navigationOptions: {
+      headerTitle: '홈'
+    }
+  },
+  CostModal: {
+    screen: CostModalScreen,
+    path: 'home/cost',
+    navigationOptions: {
+      headerTitle: '외래 진료비 계산서'
+    }
+  },
+}, {
+  mode: 'modal'
+});
+
 const TabNav = TabNavigator(
   {
-    Ringer: {
-      screen: RingerScreen,
+    Home: {
+      screen: HomeStack,
       path: '',
+      navigationOptions: {
+        header: null
+      }
     },
     Drug: {
       screen: DrugScreen,
@@ -63,7 +86,7 @@ const App = StackNavigator(
       }
     },
     TabsNavigator: {
-      screen: TabNav,
+      screen: TabNav
     }
   },
   {

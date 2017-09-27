@@ -54,10 +54,7 @@ class DrugScreen extends Component {
         const { renderDrugList } = this;
         return (
             <View>
-                <FlatList
-                    data = { patientDrug }
-                    renderItem = { renderDrugList }
-                />
+                <Text>hi</Text>
             </View>
         );
     }
