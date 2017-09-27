@@ -105,13 +105,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     profileContainer: {
-        flex: 0.7,
+        flex: 0.65,
         backgroundColor: '#8CD7D6',
         alignItems: 'center',
         justifyContent: 'center',
     },
     componentContainer: {
-        flex: 0.3,
+        flex: 0.35,
         flexDirection: 'row',
     }
 });

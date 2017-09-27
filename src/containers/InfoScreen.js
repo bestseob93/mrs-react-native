@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import Dimensions from 'Dimensions';
-import { FlatList, StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, View, Text, Image, ScrollView, Button, AsyncStorage } from 'react-native';
 
 class InfoScreen extends Component {
     static navigationOptions = {
         headerTitle: '한성병원'
+    }
+
+    onLogoutPress = async () => {
+        console.log('pressed');
+        const { navigation } = this.props;
+        try {
+            await AsyncStorage.removeItem('myToken');
+        } catch (e) {
+            if(e) throw e;
+        }
     }
 
     render() {
@@ -48,6 +58,7 @@ class InfoScreen extends Component {
                 <View style={styles.doctorListStyle}>
                     <View style={ [styles.profileStyle, {backgroundColor:'yellow'}] }>
                         <Text>권형은</Text>
+                        <Button title="로그아웃" onPress={this.onLogoutPress} />
                     </View>
                 </View>
             </View>
