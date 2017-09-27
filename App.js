@@ -37,20 +37,30 @@ const TabNav = TabNavigator(
       screen: HomeStack,
       path: '',
       navigationOptions: {
-        header: null
+        header: null,
+        title: "홈"
       }
     },
     Drug: {
       screen: DrugScreen,
       path: 'drug',
+      navigationOptions: {
+        title: "투약기록"
+      }
     },
     Record: {
       screen: RecordScreen,
       path: 'record',
+      navigationOptions: {
+        title: "녹화기록"
+      }
     },
     Info: {
       screen: InfoScreen,
       path: 'info',
+      navigationOptions: {
+        title: "담당의료진"
+      }
     },
   },
   {
@@ -90,7 +100,7 @@ const App = StackNavigator(
     }
   },
   {
-    headerMode: 'float',
+    headerMode: 'float'
   }
 );
 
