@@ -38,7 +38,7 @@ class WeatherComponent extends Component {
     }
 
     componentDidMount() {
-        const appKey = '6e52b171-e0aa-33cb-b127-cad741ce7e09';
+        const appKey = 'f5496bd2-348d-364f-b3f6-d1a1f17d18b6';
         navigator.geolocation.getCurrentPosition(({coords}) => {
             console.log(coords);
             axios.get(`http://apis.skplanetx.com/weather/summary?appKey=${appKey}&version=1&lat=${coords.latitude}&lon=${coords.longitude}`

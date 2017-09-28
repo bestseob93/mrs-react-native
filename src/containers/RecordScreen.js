@@ -61,7 +61,6 @@ class RecordScreen extends Component {
     }
 
     renderItems = ({item}) => {
-        console.log(Video.source);
         return (
             <View key={item.fileName} style={styles.listContainer}>
                 <View onLayout={this.onLayout}>
@@ -92,21 +91,6 @@ class RecordScreen extends Component {
     }
 
     render() {
-        const data = [
-            {
-                date: '2017-09-22'
-            },
-            {
-                date: '2017-09-23'
-            },
-            {
-                date: '2017-09-24'
-            },
-            {
-                date: '2017-09-25'
-            }
-        ];
-
         return (
             <View style={styles.container}>
                 <FlatList

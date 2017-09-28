@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, View, Text, Image, ScrollView, Modal, TouchableHighlight } from 'react-native';
+import { FlatList, StyleSheet, View, Text, Image, ScrollView, Modal, TouchableOpacity, As } from 'react-native';
 
 class DrugScreen extends Component {
     static navigationOptions = {
@@ -28,7 +28,7 @@ class DrugScreen extends Component {
                         <View style={styles.modalContainerStyle}>
                             
         
-                            <TouchableHighlight onPress={() => {
+                            <TouchableOpacity onPress={() => {
                                 this.setModalVisible(!this.state.modalVisible)
                             }}>
                             <View>
@@ -36,19 +36,19 @@ class DrugScreen extends Component {
                                 <Text style={styles.modalDrugNameStyle}>약 이름</Text>
                                 <Text style={styles.modalDrugDetailStyle}>약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. 약 상세정보입니다. </Text>
                             </View>
-                            </TouchableHighlight>
+                            </TouchableOpacity>
         
                         </View>
                     </Modal>
       
-                    <TouchableHighlight onPress={() => {
+                    <TouchableOpacity onPress={() => {
                         this.setModalVisible(true)
                     }}>
                         <View key={index} >
                             <Image source={require('../imgs/A11A4380A004901.jpg')} style={styles.drugImageStyle} />
                             <Text style={styles.drugDescription}>{data.drugName}</Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
 
                 
